@@ -1,13 +1,15 @@
 import $ from "jquery";
 const firebase = require("firebase");
 
-var id;
-if (localStorage.id) {
-    id = localStorage.id;
-} else {
-    localStorage.id = 1;
+function generateId (len) {
+    return Math.random().toString(36).substr(2, len || 10 );
 }
-console.log("i worK!");
+
+if (!localStorage.userId) {
+    localStorage.userId = generateId();
+}
+var id = localStorage.userId;
+console.log("id: ", id);
 
 var config = {
     apiKey: "AIzaSyAxq2kfdo0cNRLZcYaRp4ZJMx_s9hXE3YE",
@@ -16,16 +18,40 @@ var config = {
     storageBucket: "likecounter-b8d5a.appspot.com",
     messagingSenderId: "897523997760"
 };
+
 firebase.initializeApp(config);
 const db = firebase.database();
 
 $(function () {
     $(".btn-like").click(function () {
         console.log("click like");
-        db.ref("/like-app/info/").set({
-            "id": "1",
+        var randomValue = generateId (15);
+        db.ref("/like-app/info/"+randomValue).set({
+            "id": id,
             "type": "like",
             "cur_time": new Date().toLocaleTimeString()
         });
+    });
+});
+$(function () {
+    $(".btn-dislike").click(function () {
+        console.log("click dislike");
+        var randomValue = generateId (15);
+        db.ref("/like-app/info/"+randomValue).set({
+            "id": id,
+            "type": "dislike",
+            "cur_time": new Date().toLocaleTimeString()
+        });
+    });
+});
+
+// работа с базой данных!
+db.ref("/like-app/info/").once('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+        var date_ex = new Date();
+        date_ex.setHours(17, 35, 0, 0);
+        if (date_ex.toLocaleTimeString() < childSnapshot.val().cur_time) {
+            console.log(childSnapshot.val().type);
+        }
     });
 });

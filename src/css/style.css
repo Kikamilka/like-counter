@@ -1,5 +1,7 @@
 .btn {
-    font-size: 30px !important;
     margin-bottom: 30px;
     margin-top: 10px;
+}
+.glyphicon {
+    margin-left: 20px !important;
 }
