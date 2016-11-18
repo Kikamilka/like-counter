@@ -1,7 +1,15 @@
-.btn {
-    margin-bottom: 30px;
+.btn-like, .btn-dislike {
+    margin-bottom: 10px;
     margin-top: 10px;
+    font-size: 30px;
+    line-height: 3.0;
 }
 .glyphicon {
     margin-left: 20px !important;
+}
+.glyphicon-thumbs-up {
+    top: 3px;
+}
+.glyphicon-thumbs-down {
+    top: 9px;
 }

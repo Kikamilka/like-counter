@@ -32,8 +32,7 @@ $(function () {
             "cur_time": new Date().toLocaleTimeString()
         });
     });
-});
-$(function () {
+
     $(".btn-dislike").click(function () {
         console.log("click dislike");
         var randomValue = generateId (15);
@@ -51,7 +50,7 @@ db.ref("/like-app/info/").once('value', function(snapshot) {
         var date_ex = new Date();
         date_ex.setHours(17, 35, 0, 0);
         if (date_ex.toLocaleTimeString() < childSnapshot.val().cur_time) {
-            console.log(childSnapshot.val().type);
+            //console.log(childSnapshot.val().type);
         }
     });
 });
