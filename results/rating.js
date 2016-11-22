@@ -135,6 +135,7 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
     $scope.options = {
         legend: {
             display: true,
+            type: "category",
             position: 'bottom',
             labels: {
                 fontSize: 18,
@@ -162,7 +163,7 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
                     ticks: {
                         // наименования докладов
                         fontColor: "black",
-                        fontSize: 30,
+                        fontSize: 24,
                         stepSize: 1
                     },
                     gridLines: {
@@ -171,9 +172,7 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
                     }
                 }
             ]
-        },
-        defaultFontColor: "black",
-        defaultFontSize: 20
+        }
     };
     $scope.colors = [
         {
