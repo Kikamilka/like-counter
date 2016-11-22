@@ -51,13 +51,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var myAppModule = angular.module("app", ["chart.js", "firebase"]).config(['ChartJsProvider', function (ChartJsProvider) {
-    // Configure all charts
-    /*ChartJsProvider.setOptions({
-     chartColors: ['#10C033', '#CB0233'],
-     responsive: true
-     });*/
-}]);
+var myAppModule = angular.module("app", ["chart.js", "firebase"]);
 
 function in_array(value, array) {
     if (array) {
@@ -80,7 +74,6 @@ function index_type_in_array(value, array) {
 }
 
 var countVoiceFromDB = function (snapshot, report) {
-    console.log(report.begin);
     var like = 0;
     var dislike = 0;
     var voices_id_type = [];
@@ -116,37 +109,36 @@ var countVoiceFromDB = function (snapshot, report) {
     });
     return {like: like, dislike: dislike};
 };
+
 myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseArray) {
-    var firstArray = [];
-    var secondArray = [];
-    const ref = firebase.database().ref("/like-app/info/");
-
-    //$scope.items = $firebaseArray(ref);
-    $scope.labels = [];
     $scope.series = ['like', 'dislike'];
-
-    timetable.reverse().forEach(report => {
-        console.log(report.begin);
-        ref.once('value', function (snapshot) {
+    const ref = firebase.database().ref("/like-app/info/");
+    var syncObject = $firebaseObject(ref);
+    ref.on('value', function (snapshot) {
+        var firstArray = [];
+        var secondArray = [];
+        $scope.labels = [];
+        timetable.forEach(report => {
+            console.log(report.begin);
             var __ret = countVoiceFromDB(snapshot, report);
             firstArray.push(__ret.like);
             secondArray.push(__ret.dislike);
             $scope.labels.push(report.title);
-            $scope.$apply(function () {
-                $scope.data = [
-                    firstArray,
-                    secondArray
-                ];
-            });
+            $scope.data = [
+                firstArray,
+                secondArray
+            ];
         });
     });
+    //syncObject.$bindTo($scope, "data");
+
     $scope.options = {
         legend: {
             display: true,
             position: 'bottom',
             labels: {
                 fontSize: 18,
-                fontColor:"black",
+                fontColor: "black",
                 boxWidth: 60,
                 padding: 20
             }

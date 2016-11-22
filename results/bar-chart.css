@@ -1,0 +1,13 @@
+body {
+    background-image: url(../images/presswall_preview.png);
+}
+div {
+    background-color: aliceblue;
+    opacity: 0.9;
+    position: relative;
+    margin: 10px;
+    border-radius: 10px;
+}
+.chart {
+    padding: 10px;
+}

@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app">
+<html ng-app="app">
 <head>
     <title>Rating reports</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./bar-chart.css">
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
     <script src="../node_modules/chart.js/dist/Chart.min.js"></script>
@@ -13,9 +14,9 @@
     <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
     <script type="text/javascript" src="./rating.js"></script>
 </head>
-<body ng-controller="BarCtrl" style="background-image: url(../images/presswall_preview.png);">
-<div style="background-color: aliceblue; opacity: 0.9; position:relative; margin: 10px; border-radius: 2px;">
-    <canvas id="bar" class="chart chart-horizontal-bar" style="padding: 10px;"
+<body ng-controller="BarCtrl">
+<div>
+    <canvas id="bar" class="chart chart-horizontal-bar"
             chart-data="data" chart-labels="labels" chart-options="options" chart-colors="colors" chart-series="series">
     </canvas>
 </div>
