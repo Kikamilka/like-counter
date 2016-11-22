@@ -71,6 +71,51 @@ function in_array(value, array) {
     return false;
 }
 
+function index_type_in_array(value, array) {
+    for (var i = 0; i < array.length; i++) {
+        if (array[i] == value) {
+            return i + 1;
+        }
+    }
+}
+
+var countVoiceFromDB = function (snapshot, report) {
+    console.log(report.begin);
+    var like = 0;
+    var dislike = 0;
+    var voices_id_type = [];
+    snapshot.forEach(function (childSnapshot) {
+        if ((childSnapshot.val().cur_time >= report.begin) && (childSnapshot.val().cur_time <= report.end)) {
+            if (!in_array(childSnapshot.val().id, voices_id_type)) {
+                if (childSnapshot.val().type == "like") {
+                    like++;
+                }
+                else {
+                    dislike++;
+                }
+                voices_id_type.push(childSnapshot.val().id);
+                voices_id_type.push(childSnapshot.val().type);
+                console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like, dislike);
+            }
+            else {
+                var index = index_type_in_array(childSnapshot.val().id, voices_id_type);
+                if (childSnapshot.val().type != voices_id_type[index]) {
+                    voices_id_type[index] = childSnapshot.val().type;
+                    if (childSnapshot.val().type == "like") {
+                        like++;
+                        dislike--;
+                    }
+                    else {
+                        like--;
+                        dislike++;
+                    }
+                }
+                console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like, dislike);
+            }
+        }
+    });
+    return {like: like, dislike: dislike};
+};
 myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseArray) {
     var firstArray = [];
     var secondArray = [];
@@ -80,31 +125,12 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
     $scope.labels = [];
     $scope.series = ['like', 'dislike'];
 
-    timetable.forEach(report => {
-        //console.log(report.begin);
+    timetable.reverse().forEach(report => {
+        console.log(report.begin);
         ref.once('value', function (snapshot) {
-            var like = 0;
-            var dislike = 0;
-            var id_voice = [];
-            snapshot.forEach(function (childSnapshot) {
-                if ((childSnapshot.val().cur_time >= report.begin) && (childSnapshot.val().cur_time <= report.end)) {
-                    if (!in_array(childSnapshot.val().id, id_voice)) {
-                        if (childSnapshot.val().type == "like") {
-                            like++;
-                        }
-                        else {
-                            dislike++;
-                        }
-                        id_voice.push(childSnapshot.val().id);
-                        console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like, dislike);
-                    }
-                    else {
-                        // todo Проверить даты обновления, если новая позже,то изменить на нее!
-                    }
-                }
-            });
-            firstArray.push(like);
-            secondArray.push(dislike);
+            var __ret = countVoiceFromDB(snapshot, report);
+            firstArray.push(__ret.like);
+            secondArray.push(__ret.dislike);
             $scope.labels.push(report.title);
             $scope.$apply(function () {
                 $scope.data = [
@@ -122,13 +148,23 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
         defaultFontColor: "black",
         defaultFontSize: 20
     };
-    $scope.colors = [{
-        backgroundColor: "#10C033",
-        pointBackgroundColor: "rgba(159,204,0, 1)",
-        pointHoverBackgroundColor: "rgba(159,204,0, 0.8)",
-        borderColor: "rgba(159,204,0, 1)",
-        borderWidth: 2,
-        pointBorderColor: '#fff',
-        pointHoverBorderColor: "rgba(159,204,0, 1)"
-    }, '#CB0233', '#DCDCDC', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'];
+    $scope.colors = [
+        {
+            backgroundColor: "#4ebc38",
+            pointBackgroundColor: "#e8e806",
+            pointHoverBackgroundColor: "#409b2e",
+            borderColor: "#339320",
+            borderWidth: 2,
+            pointBorderColor: '#339320',
+            pointHoverBorderColor: "#339320"
+        },
+        {
+            backgroundColor: "#c11d1d",
+            pointBackgroundColor: "#e8e806",
+            pointHoverBackgroundColor: "#ba0909",
+            borderColor: "#8c0808",
+            borderWidth: 2,
+            pointBorderColor: '#8c0808',
+            pointHoverBorderColor: "#8c0808"
+        }];
 });
