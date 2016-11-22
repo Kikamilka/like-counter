@@ -145,6 +145,42 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
             display: true,
             position: 'bottom',
         },
+        scales: {
+            xAxes: [
+                {
+                    ticks: {
+                        fontSize: 14,
+                        fontColor: "black"
+                    },
+                    gridLines: {
+                        zeroLineColor: "black",
+                        zeroLineWidth: 2
+                    },
+                    scaleLabel: {
+                        fontColor: "black",
+                        fontSize: 20
+                    }
+                }
+            ],
+            yAxes: [
+                {
+                    ticks: {
+                        fontColor: "black",
+                        fontSize: 16,
+                        stepSize: 1
+                    },
+                    gridLines: {
+                        zeroLineColor: "black",
+                        zeroLineWidth: 2
+                    },
+                    scaleLabel: {
+                        display: true,
+                        fontColor: "black",
+                        fontSize: 20
+                    }
+                }
+            ]
+        },
         defaultFontColor: "black",
         defaultFontSize: 20
     };
