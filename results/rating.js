@@ -144,39 +144,38 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
         legend: {
             display: true,
             position: 'bottom',
+            labels: {
+                fontSize: 18,
+                fontColor:"black",
+                boxWidth: 60,
+                padding: 20
+            }
         },
         scales: {
             xAxes: [
                 {
                     ticks: {
-                        fontSize: 14,
-                        fontColor: "black"
+                        fontSize: 24,
+                        fontColor: "black",
+                        stepSize: 1
                     },
                     gridLines: {
                         zeroLineColor: "black",
                         zeroLineWidth: 2
-                    },
-                    scaleLabel: {
-                        fontColor: "black",
-                        fontSize: 20
                     }
                 }
             ],
             yAxes: [
                 {
                     ticks: {
+                        // наименования докладов
                         fontColor: "black",
-                        fontSize: 16,
+                        fontSize: 30,
                         stepSize: 1
                     },
                     gridLines: {
-                        zeroLineColor: "black",
-                        zeroLineWidth: 2
-                    },
-                    scaleLabel: {
-                        display: true,
-                        fontColor: "black",
-                        fontSize: 20
+                        lineWidth: 5,
+                        offsetGridLines: true
                     }
                 }
             ]
