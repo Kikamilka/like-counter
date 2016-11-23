@@ -1,11 +1,5 @@
 var timetable = [
     {
-        "begin": "19:45:00",
-        "end": "19:59:59",
-        "author": "Денис Соколов",
-        "title": "Открытие конференции"
-    },
-    {
         "begin": "20:00:00",
         "end": "20:39:59",
         "author": "Алексей Зиновьев",
@@ -88,7 +82,8 @@ var countVoiceFromDB = function (snapshot, report) {
                 }
                 voices_id_type.push(childSnapshot.val().id);
                 voices_id_type.push(childSnapshot.val().type);
-                console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like, dislike);
+                //console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like,
+                // dislike);
             }
             else {
                 var index = index_type_in_array(childSnapshot.val().id, voices_id_type);
@@ -103,7 +98,8 @@ var countVoiceFromDB = function (snapshot, report) {
                         dislike++;
                     }
                 }
-                console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like, dislike);
+                //console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like,
+                // dislike);
             }
         }
     });
@@ -119,7 +115,7 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
         var secondArray = [];
         $scope.labels = [];
         timetable.forEach(report => {
-            console.log(report.begin);
+            //console.log(report.begin);
             var __ret = countVoiceFromDB(snapshot, report);
             firstArray.push(__ret.like);
             secondArray.push(__ret.dislike);
