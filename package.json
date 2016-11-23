@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf build && mkdir build",
-    "copy": "cp -r libs/ build && cp -r images/ build && cp -r src/css/ build && cp src/index.html build",
+    "copy": "cp -r images/ build && cp -r src/css/ build && cp src/index.html build",
     "bundle": "browserify src/js/app.js -t [ babelify --presets [ es2015 ] ] | uglifyjs -cm > build/app.js",
     "watch": "watchify src/js/app.js -o build/app.js -d -v -p [ browserify-livereload --host 127.0.0.1 --port 1340 ] -t [ babelify --presets [ es2015 ] ]",
     "static": "static build",
