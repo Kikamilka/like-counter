@@ -22,7 +22,62 @@ var config = {
 firebase.initializeApp(config);
 const db = firebase.database();
 
+var timetable = [
+    {
+        "begin": "20:00:00",
+        "end": "20:39:59",
+        "author": "Алексей Зиновьев",
+        "title": "Джунгли Hadoop: мир диких алгоритмов и ядовитых JVM"
+    },
+    {
+        "begin": "20:40:00",
+        "end": "20:59:59",
+        "author": "Арина Николаева",
+        "title": "Mind mapping. Use your head to grow a tree!"
+    },
+    {
+        "begin": "21:00:00",
+        "end": "21:39:59",
+        "author": "Яна Клочкова, Владимир Селянкин, Игорь Кузьминых",
+        "title": "Мы из Agile"
+    },
+    {
+        "begin": "22:00:00",
+        "end": "22:39:59",
+        "author": "Игорь Борисевич, Юрий Кочубеев",
+        "title": "Support from Cradle to Grave"
+    },
+    {
+        "begin": "22:40:00",
+        "end": "22:59:59",
+        "author": "Екатерина Никольская",
+        "title": "Self-presentation: tips & tricks"
+    },
+    {
+        "begin": "23:00:00",
+        "end": "23:49:59",
+        "author": "Александр Шушунов",
+        "title": "Bullshit Bingo"
+    }
+];
+
 $(function () {
+    document.querySelector(".title").innerHTML = "<p>"+""+"</p>";
+    timetable.forEach(function (item) {
+        if (item.begin <= new Date().toLocaleTimeString() && item.end >= new Date().toLocaleTimeString()) {
+            document.querySelector(".title").innerHTML = "<p style='color: azure; font-size: 14px; font-weight:" +
+                " bold; text-align: center; margin: 10px;'>" + item.title + "</p>";
+        }
+    });
+    setInterval(function() {
+        timetable.forEach(function (item) {
+            if (item.begin <= new Date().toLocaleTimeString() && item.end >= new Date().toLocaleTimeString()) {
+                document.querySelector(".title").innerHTML = "<p style='color: azure; font-size: 14px; font-weight:" +
+                    " bold; text-align: center; margin: 10px;'>" + item.title + "</p>";
+            }
+        })
+    }, 60000);
+
     $(".btn-like").click(function () {
         console.log("click like");
         var randomValue = generateId (15);

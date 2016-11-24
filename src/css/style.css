@@ -4,6 +4,9 @@
     font-size: 30px;
     line-height: 3.0;
 }
+button.disable {
+
+}
 .glyphicon {
     margin-left: 20px !important;
 }
