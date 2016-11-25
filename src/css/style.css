@@ -4,8 +4,19 @@
     font-size: 30px;
     line-height: 3.0;
 }
-button.disable {
-
+button.disabled,button[disabled] {
+    background-color: aliceblue !important;
+    opacity: 0.7 !important;
+    color: darkgrey !important;
+    border: darkgrey 2px solid !important;
+}
+button[disabled] span.glyphicon-thumbs-up {
+    font-size: 50px !important;
+    top: 10px !important;
+}
+button[disabled] span.glyphicon-thumbs-down {
+    font-size: 50px !important;
+    top: 18px !important;
 }
 .glyphicon {
     margin-left: 20px !important;
@@ -15,4 +26,11 @@ button.disable {
 }
 .glyphicon-thumbs-down {
     top: 9px;
+}
+div.title p {
+    color: azure;
+    font-size: 5vw;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px;
 }

@@ -31,7 +31,7 @@ var timetable = [
     },
     {
         "begin": "23:00:00",
-        "end": "23:49:59",
+        "end": "23:59:59",
         "author": "Александр Шушунов",
         "title": "Bullshit Bingo"
     }
@@ -72,7 +72,8 @@ var countVoiceFromDB = function (snapshot, report) {
     var dislike = 0;
     var voices_id_type = [];
     snapshot.forEach(function (childSnapshot) {
-        if ((childSnapshot.val().cur_time >= report.begin) && (childSnapshot.val().cur_time <= report.end)) {
+        if ((new Date(childSnapshot.val().cur_time).toLocaleTimeString() >= report.begin)
+            && (new Date(childSnapshot.val().cur_time).toLocaleTimeString() <= report.end)) {
             if (!in_array(childSnapshot.val().id, voices_id_type)) {
                 if (childSnapshot.val().type == "like") {
                     like++;
@@ -82,20 +83,24 @@ var countVoiceFromDB = function (snapshot, report) {
                 }
                 voices_id_type.push(childSnapshot.val().id);
                 voices_id_type.push(childSnapshot.val().type);
+                voices_id_type.push(childSnapshot.val().cur_time);
                 //console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like,
                 // dislike);
             }
             else {
                 var index = index_type_in_array(childSnapshot.val().id, voices_id_type);
-                if (childSnapshot.val().type != voices_id_type[index]) {
-                    voices_id_type[index] = childSnapshot.val().type;
-                    if (childSnapshot.val().type == "like") {
-                        like++;
-                        dislike--;
-                    }
-                    else {
-                        like--;
-                        dislike++;
+                if (childSnapshot.val().cur_time > voices_id_type[index+1]) {
+                    voices_id_type[index+1] = childSnapshot.val().cur_time;
+                    if (childSnapshot.val().type != voices_id_type[index]) {
+                        voices_id_type[index] = childSnapshot.val().type;
+                        if (childSnapshot.val().type == "like") {
+                            like++;
+                            dislike--;
+                        }
+                        else {
+                            like--;
+                            dislike++;
+                        }
                     }
                 }
                 //console.log(childSnapshot.val().id, report.begin, report.end, childSnapshot.val().type, like,

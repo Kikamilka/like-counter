@@ -1,8 +1,8 @@
 import $ from "jquery";
 const firebase = require("firebase");
 
-function generateId (len) {
-    return Math.random().toString(36).substr(2, len || 10 );
+function generateId(len) {
+    return Math.random().toString(36).substr(2, len || 10);
 }
 
 if (!localStorage.userId) {
@@ -55,57 +55,67 @@ var timetable = [
     },
     {
         "begin": "23:00:00",
-        "end": "23:49:59",
+        "end": "23:59:59",
         "author": "Александр Шушунов",
         "title": "Bullshit Bingo"
     }
 ];
 
-$(function () {
-    document.querySelector(".title").innerHTML = "<p>"+""+"</p>";
+var rewriteTitle = function () {
     timetable.forEach(function (item) {
         if (item.begin <= new Date().toLocaleTimeString() && item.end >= new Date().toLocaleTimeString()) {
-            document.querySelector(".title").innerHTML = "<p style='color: azure; font-size: 14px; font-weight:" +
-                " bold; text-align: center; margin: 10px;'>" + item.title + "</p>";
-        }
-    });
-    setInterval(function() {
-        timetable.forEach(function (item) {
-            if (item.begin <= new Date().toLocaleTimeString() && item.end >= new Date().toLocaleTimeString()) {
-                document.querySelector(".title").innerHTML = "<p style='color: azure; font-size: 14px; font-weight:" +
-                    " bold; text-align: center; margin: 10px;'>" + item.title + "</p>";
+            if (document.querySelector(".title").innerHTML != "<p>" + item.title + "</p>") {
+                $(".btn-like").removeAttr("disabled");
+                $(".btn-dislike").removeAttr("disabled");
+                document.querySelector(".title").innerHTML = "<p>" + item.title + "</p>";
             }
-        })
-    }, 60000);
+        }
+    })
+};
+
+$(function () {
+    if (new Date().toLocaleTimeString() < timetable[0].begin) {
+        document.querySelector(".title").innerHTML = "<p>" + "В данный момент времени активных докладов нет" + "</p>";
+        $(".btn-like").disabled = true;
+        $(".btn-dislike").disabled = true;
+    }
+    rewriteTitle();
+    setInterval(function () {
+        rewriteTitle();
+    }, 20000);
 
     $(".btn-like").click(function () {
+        this.disabled = true;
+        $(".btn-dislike").removeAttr("disabled");
         console.log("click like");
-        var randomValue = generateId (15);
-        db.ref("/like-app/info/"+randomValue).set({
+        var randomValue = generateId(15);
+        db.ref("/like-app/info/" + randomValue).set({
             "id": id,
             "type": "like",
-            "cur_time": new Date().toLocaleTimeString()
+            "cur_time": firebase.database.ServerValue.TIMESTAMP
         });
     });
 
     $(".btn-dislike").click(function () {
+        this.disabled = true;
+        $(".btn-like").removeAttr("disabled");
         console.log("click dislike");
-        var randomValue = generateId (15);
-        db.ref("/like-app/info/"+randomValue).set({
+        var randomValue = generateId(15);
+        db.ref("/like-app/info/" + randomValue).set({
             "id": id,
             "type": "dislike",
-            "cur_time": new Date().toLocaleTimeString()
+            "cur_time": firebase.database.ServerValue.TIMESTAMP
+            //"cur_time": new Date().toLocaleTimeString()
         });
     });
 });
 
-// работа с базой данных!
-db.ref("/like-app/info/").once('value', function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-        var date_ex = new Date();
-        date_ex.setHours(17, 35, 0, 0);
-        if (date_ex.toLocaleTimeString() < childSnapshot.val().cur_time) {
-            //console.log(childSnapshot.val().type);
-        }
-    });
-});
+// работа с базой данных (ПРИМЕР)
+/*db.ref("/like-app/info/").once('value', function(snapshot) {
+ snapshot.forEach(function(childSnapshot) {
+ var date_ex = new Date().getMilliseconds();
+ if (date_ex <= childSnapshot.val().cur_time) {
+ console.log(new Date(childSnapshot.val().cur_time).toLocaleTimeString());
+ }
+ });
+ });*/
