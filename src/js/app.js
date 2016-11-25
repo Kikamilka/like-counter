@@ -76,8 +76,6 @@ var rewriteTitle = function () {
 $(function () {
     if (new Date().toLocaleTimeString() < timetable[0].begin) {
         document.querySelector(".title").innerHTML = "<p>" + "В данный момент времени активных докладов нет" + "</p>";
-        $(".btn-like").disabled = true;
-        $(".btn-dislike").disabled = true;
     }
     rewriteTitle();
     setInterval(function () {
@@ -109,13 +107,3 @@ $(function () {
         });
     });
 });
-
-// работа с базой данных (ПРИМЕР)
-/*db.ref("/like-app/info/").once('value', function(snapshot) {
- snapshot.forEach(function(childSnapshot) {
- var date_ex = new Date().getMilliseconds();
- if (date_ex <= childSnapshot.val().cur_time) {
- console.log(new Date(childSnapshot.val().cur_time).toLocaleTimeString());
- }
- });
- });*/
