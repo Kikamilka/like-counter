@@ -24,58 +24,91 @@ const db = firebase.database();
 
 var timetable = [
     {
-        "begin": "20:00:00",
-        "end": "20:39:59",
-        "author": "Алексей Зиновьев",
-        "title": "Джунгли Hadoop: мир диких алгоритмов и ядовитых JVM"
+        "date": "03.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Arina Nikolaeva",
+        "title": "EPAM Training – Why we do eLearning"
     },
     {
-        "begin": "20:40:00",
-        "end": "20:59:59",
-        "author": "Арина Николаева",
+        "date": "03.04.2017",
+        "begin": "17:30:00",
+        "end": "19:00:00",
+        "author": "Anna Knyazkova",
+        "title": "Professional burnout: How to prevent it?"
+    },
+    {
+        "date": "04.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Aleksei Prokofev",
+        "title": "Java logging is a tricky business"
+    },
+    {
+        "date": "04.04.2017",
+        "begin": "17:30:00",
+        "end": "19:00:00",
+        "author": "Ekaterina Nikolskaya",
+        "title": "How did they pass an assessment session?"
+    },
+    {
+        "date": "05.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Igor Kuzminykh",
+        "title": "JRebel: Make delivery faster"
+    },
+    {
+        "date": "06.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Sergey Larin",
+        "title": "Java&C++. How to make friends?"
+    },
+    {
+        "date": "06.04.2017",
+        "begin": "17:30:00",
+        "end": "19:00:00",
+        "author": "Arina Nikolaeva",
         "title": "Mind mapping. Use your head to grow a tree!"
     },
     {
-        "begin": "21:00:00",
-        "end": "21:39:59",
-        "author": "Яна Клочкова, Владимир Селянкин, Игорь Кузьминых",
-        "title": "Мы из Agile"
+        "date": "07.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Denis Sokolov and Margarita Vermenik",
+        "title": "Morning coffee with director"
     },
     {
-        "begin": "22:00:00",
-        "end": "22:39:59",
-        "author": "Игорь Борисевич, Юрий Кочубеев",
-        "title": "Support from Cradle to Grave"
+        "date": "07.04.2017",
+        "begin": "17:30:00",
+        "end": "19:00:00",
+        "author": "Dmitrii Golikov",
+        "title": "Happy with GraphQL"
     },
-    {
-        "begin": "22:40:00",
-        "end": "22:59:59",
-        "author": "Екатерина Никольская",
-        "title": "Self-presentation: tips & tricks"
-    },
-    {
-        "begin": "23:00:00",
-        "end": "23:59:59",
-        "author": "Александр Шушунов",
-        "title": "Bullshit Bingo"
-    }
 ];
 
 var rewriteTitle = function () {
     timetable.forEach(function (item) {
-        if (item.begin <= new Date().toLocaleTimeString() && item.end >= new Date().toLocaleTimeString()) {
+        if ((item.date == new Date().toLocaleDateString()
+            && item.begin <= new Date().toLocaleTimeString()
+            && item.end >= new Date().toLocaleTimeString())) {
             if (document.querySelector(".title").innerHTML != "<p>" + item.title + "</p>") {
                 $(".btn-like").removeAttr("disabled");
                 $(".btn-dislike").removeAttr("disabled");
                 document.querySelector(".title").innerHTML = "<p>" + item.title + "</p>";
             }
         }
+        else {
+            document.querySelector(".title").innerHTML = "<p>" + "Сейчас активных докладов нет" + "</p>";
+        }
     })
 };
 
 $(function () {
-    if (new Date().toLocaleTimeString() < timetable[0].begin) {
-        document.querySelector(".title").innerHTML = "<p>" + "В данный момент времени активных докладов нет" + "</p>";
+    if (new Date().toLocaleDateString() < timetable[0].date || new Date().toLocaleDateString() > timetable[timetable.length-1].date
+        || (new Date().toLocaleDateString() == timetable[0].date && new Date().toLocaleTimeString() < timetable[0].begin)) {
+        document.querySelector(".title").innerHTML = "<p>" + "Сейчас активных докладов нет" + "</p>";
     }
     rewriteTitle();
     setInterval(function () {
@@ -87,7 +120,7 @@ $(function () {
         $(".btn-dislike").removeAttr("disabled");
         console.log("click like");
         var randomValue = generateId(15);
-        db.ref("/like-app/info/" + randomValue).set({
+        db.ref("/like-app/it-week/" + randomValue).set({
             "id": id,
             "type": "like",
             "cur_time": firebase.database.ServerValue.TIMESTAMP
@@ -99,7 +132,7 @@ $(function () {
         $(".btn-like").removeAttr("disabled");
         console.log("click dislike");
         var randomValue = generateId(15);
-        db.ref("/like-app/info/" + randomValue).set({
+        db.ref("/like-app/it-week/" + randomValue).set({
             "id": id,
             "type": "dislike",
             "cur_time": firebase.database.ServerValue.TIMESTAMP

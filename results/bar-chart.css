@@ -1,13 +1,23 @@
 body {
-    background-image: url(../images/presswall_preview.png);
+    /*background-image: url(../images/IT-Week_2017_1920x1080.png);*/
+    background: rgba(141,234,53,0.87);
 }
-div {
-    background-color: aliceblue;
+.logo-it-week {
+    position: absolute;
+    opacity: 0.6;
+    border-radius: 120px;
+    left: 85%;
+    width: 15%;
+}
+.results {
+    background-color: beige;
     opacity: 0.9;
     position: relative;
     margin: 10px;
     border-radius: 10px;
 }
 .chart {
+    width: 100%;
+    height: auto;
     padding: 10px;
 }

@@ -1,41 +1,69 @@
 var timetable = [
     {
-        "begin": "20:00:00",
-        "end": "20:39:59",
-        "author": "Алексей Зиновьев",
-        "title": "Джунгли Hadoop: мир диких алгоритмов и ядовитых JVM"
+        "date": "28.03.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Arina Nikolaeva",
+        "title": "EPAM Training – Why we do eLearning"
     },
     {
-        "begin": "20:40:00",
-        "end": "20:59:59",
-        "author": "Арина Николаева",
+        "date": "03.04.2017",
+        "begin": "17:30:00",
+        "end": "19:00:00",
+        "author": "Anna Knyazkova",
+        "title": "Professional burnout: How to prevent it?"
+    },
+    {
+        "date": "04.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Aleksei Prokofev",
+        "title": "Java logging is a tricky business"
+    },
+    {
+        "date": "04.04.2017",
+        "begin": "17:30:00",
+        "end": "19:00:00",
+        "author": "Ekaterina Nikolskaya",
+        "title": "How did they pass an assessment session?"
+    },
+    {
+        "date": "05.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Igor Kuzminykh",
+        "title": "JRebel: Make delivery faster"
+    },
+    {
+        "date": "06.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Sergey Larin",
+        "title": "Java&C++. How to make friends?"
+    },
+    {
+        "date": "06.04.2017",
+        "begin": "17:30:00",
+        "end": "19:00:00",
+        "author": "Arina Nikolaeva",
         "title": "Mind mapping. Use your head to grow a tree!"
     },
     {
-        "begin": "21:00:00",
-        "end": "21:39:59",
-        "author": "Яна Клочкова, Владимир Селянкин, Игорь Кузьминых",
-        "title": "Мы из Agile"
+        "date": "07.04.2017",
+        "begin": "09:30:00",
+        "end": "11:00:00",
+        "author": "Denis Sokolov and Margarita Vermenik",
+        "title": "Morning coffee with director"
     },
     {
-        "begin": "22:00:00",
-        "end": "22:39:59",
-        "author": "Игорь Борисевич, Юрий Кочубеев",
-        "title": "Support from Cradle to Grave"
+        "date": "07.04.2017",
+        "begin": "17:30:00",
+        "end": "19:00:00",
+        "author": "Dmitrii Golikov",
+        "title": "Happy with GraphQL"
     },
-    {
-        "begin": "22:40:00",
-        "end": "22:59:59",
-        "author": "Екатерина Никольская",
-        "title": "Self-presentation: tips & tricks"
-    },
-    {
-        "begin": "23:00:00",
-        "end": "23:59:59",
-        "author": "Александр Шушунов",
-        "title": "Bullshit Bingo"
-    }
 ];
+
 var config = {
     apiKey: "AIzaSyAxq2kfdo0cNRLZcYaRp4ZJMx_s9hXE3YE",
     authDomain: "likecounter-b8d5a.firebaseapp.com",
@@ -44,6 +72,31 @@ var config = {
     messagingSenderId: "897523997760"
 };
 firebase.initializeApp(config);
+
+/*const ref = firebase.database().ref("/like-app/timetable/");
+
+let readTimetableFromDB = function () {
+    ref.on('value', function (snapshot) {
+        var timetableDB = [];
+        snapshot.forEach(function (childSnapshot) {
+            var curReport = {
+                "date": childSnapshot.val().date,
+                "begin": childSnapshot.val().begin,
+                "end": childSnapshot.val().end,
+                "title": childSnapshot.val().title
+            };
+            timetableDB.push(curReport);
+        });
+        console.log(timetableDB);
+        return timetableDB;
+    });
+};
+
+var timetableDB = readTimetableFromDB();
+setTimeout(function () {
+    console.log(timetableDB);
+}, 2000);*/
+
 
 var myAppModule = angular.module("app", ["chart.js", "firebase"]);
 
@@ -72,7 +125,8 @@ var countVoiceFromDB = function (snapshot, report) {
     var dislike = 0;
     var voices_id_type = [];
     snapshot.forEach(function (childSnapshot) {
-        if ((new Date(childSnapshot.val().cur_time).toLocaleTimeString() >= report.begin)
+        if ((new Date(childSnapshot.val().cur_time).toLocaleDateString() == report.date)
+            && (new Date(childSnapshot.val().cur_time).toLocaleTimeString() >= report.begin)
             && (new Date(childSnapshot.val().cur_time).toLocaleTimeString() <= report.end)) {
             if (!in_array(childSnapshot.val().id, voices_id_type)) {
                 if (childSnapshot.val().type == "like") {
@@ -113,7 +167,7 @@ var countVoiceFromDB = function (snapshot, report) {
 
 myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseArray) {
     $scope.series = ['like', 'dislike'];
-    const ref = firebase.database().ref("/like-app/info/");
+    const ref = firebase.database().ref("/like-app/it-week/");
     var syncObject = $firebaseObject(ref);
     ref.on('value', function (snapshot) {
         var firstArray = [];
@@ -150,8 +204,8 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
                 {
                     ticks: {
                         fontSize: 24,
-                        fontColor: "black",
-                        stepSize: 1
+                        fontColor: "black"
+
                     },
                     gridLines: {
                         zeroLineColor: "black",
@@ -164,8 +218,7 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
                     ticks: {
                         // наименования докладов
                         fontColor: "black",
-                        fontSize: 24,
-                        stepSize: 1
+                        fontSize: 20
                     },
                     gridLines: {
                         lineWidth: 5,
