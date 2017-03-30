@@ -24,16 +24,16 @@ const db = firebase.database();
 
 var timetable = [
     {
-        "date": "03.04.2017",
+        "date": "28.03.2017",
         "begin": "09:30:00",
         "end": "11:00:00",
         "author": "Arina Nikolaeva",
         "title": "EPAM Training – Why we do eLearning"
     },
     {
-        "date": "03.04.2017",
+        "date": "30.03.2017",
         "begin": "17:30:00",
-        "end": "19:00:00",
+        "end": "20:00:00",
         "author": "Anna Knyazkova",
         "title": "Professional burnout: How to prevent it?"
     },
@@ -90,25 +90,22 @@ var timetable = [
 
 var rewriteTitle = function () {
     timetable.forEach(function (item) {
-        if ((item.date == new Date().toLocaleDateString()
+        if (item.date == new Date().toLocaleDateString()
             && item.begin <= new Date().toLocaleTimeString()
-            && item.end >= new Date().toLocaleTimeString())) {
+            && item.end >= new Date().toLocaleTimeString()) {
             if (document.querySelector(".title").innerHTML != "<p>" + item.title + "</p>") {
                 $(".btn-like").removeAttr("disabled");
                 $(".btn-dislike").removeAttr("disabled");
                 document.querySelector(".title").innerHTML = "<p>" + item.title + "</p>";
             }
         }
-        else {
-            document.querySelector(".title").innerHTML = "<p>" + "Сейчас активных докладов нет" + "</p>";
-        }
     })
 };
 
 $(function () {
-    if (new Date().toLocaleDateString() < timetable[0].date || new Date().toLocaleDateString() > timetable[timetable.length-1].date
+    if (new Date().toLocaleDateString() < timetable[0].date || new Date().toLocaleDateString() > timetable[timetable.length - 1].date
         || (new Date().toLocaleDateString() == timetable[0].date && new Date().toLocaleTimeString() < timetable[0].begin)) {
-        document.querySelector(".title").innerHTML = "<p>" + "Сейчас активных докладов нет" + "</p>";
+        document.querySelector(".title").innerHTML = "<p>" + "Пока еще активных докладов нет" + "</p>";
     }
     rewriteTitle();
     setInterval(function () {

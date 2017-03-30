@@ -1,23 +1,24 @@
 body {
-    /*background-image: url(../images/IT-Week_2017_1920x1080.png);*/
-    background: rgba(141,234,53,0.87);
+    background-image: url(../images/bgr_green.jpg);
+    /*background: rgba(141,234,53,0.87);*/
 }
 .logo-it-week {
     position: absolute;
     opacity: 0.6;
     border-radius: 120px;
     left: 85%;
-    width: 15%;
+    width: 14%;
 }
 .results {
-    background-color: beige;
-    opacity: 0.9;
+    background-color: aliceblue;
+    opacity: 0.85;
     position: relative;
     margin: 10px;
     border-radius: 10px;
 }
 .chart {
     width: 100%;
+    opacity: 1 !important;
     height: auto;
     padding: 10px;
 }

@@ -7,9 +7,9 @@ var timetable = [
         "title": "EPAM Training – Why we do eLearning"
     },
     {
-        "date": "03.04.2017",
+        "date": "30.03.2017",
         "begin": "17:30:00",
-        "end": "19:00:00",
+        "end": "20:00:00",
         "author": "Anna Knyazkova",
         "title": "Professional burnout: How to prevent it?"
     },
@@ -72,31 +72,6 @@ var config = {
     messagingSenderId: "897523997760"
 };
 firebase.initializeApp(config);
-
-/*const ref = firebase.database().ref("/like-app/timetable/");
-
-let readTimetableFromDB = function () {
-    ref.on('value', function (snapshot) {
-        var timetableDB = [];
-        snapshot.forEach(function (childSnapshot) {
-            var curReport = {
-                "date": childSnapshot.val().date,
-                "begin": childSnapshot.val().begin,
-                "end": childSnapshot.val().end,
-                "title": childSnapshot.val().title
-            };
-            timetableDB.push(curReport);
-        });
-        console.log(timetableDB);
-        return timetableDB;
-    });
-};
-
-var timetableDB = readTimetableFromDB();
-setTimeout(function () {
-    console.log(timetableDB);
-}, 2000);*/
-
 
 var myAppModule = angular.module("app", ["chart.js", "firebase"]);
 
@@ -203,9 +178,10 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
             xAxes: [
                 {
                     ticks: {
+                        beginAtZero: true,
                         fontSize: 24,
-                        fontColor: "black"
-
+                        fontColor: "black",
+                        stepSize: 2
                     },
                     gridLines: {
                         zeroLineColor: "black",
