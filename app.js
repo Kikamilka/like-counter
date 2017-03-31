@@ -9859,21 +9859,21 @@ firebase.initializeApp(config);
 var db = firebase.database();
 
 var timetable = [{
-    "date": "28.03.2017",
+    "date": "03.03.2017",
     "begin": "09:30:00",
     "end": "11:00:00",
     "author": "Arina Nikolaeva",
     "title": "EPAM Training – Why we do eLearning"
 }, {
-    "date": "30.03.2017",
+    "date": "03.03.2017",
     "begin": "17:30:00",
-    "end": "20:00:00",
+    "end": "19:00:00",
     "author": "Anna Knyazkova",
     "title": "Professional burnout: How to prevent it?"
 }, {
-    "date": "31.03.2017",
+    "date": "04.03.2017",
     "begin": "09:30:00",
-    "end": "12:00:00",
+    "end": "11:00:00",
     "author": "Aleksei Prokofev",
     "title": "Java logging is a tricky business"
 }, {
