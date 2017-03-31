@@ -14,9 +14,9 @@ var timetable = [
         "title": "Professional burnout: How to prevent it?"
     },
     {
-        "date": "04.04.2017",
+        "date": "31.03.2017",
         "begin": "09:30:00",
-        "end": "11:00:00",
+        "end": "12:00:00",
         "author": "Aleksei Prokofev",
         "title": "Java logging is a tricky business"
     },
