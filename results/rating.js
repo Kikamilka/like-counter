@@ -164,7 +164,7 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
 
     $scope.options = {
         legend: {
-            display: true,
+            display: false,
             type: "category",
             position: 'bottom',
             labels: {
