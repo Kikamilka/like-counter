@@ -9908,7 +9908,7 @@ var checkDate = function checkDate(item, date) {
 };
 
 var rewriteTitle = function rewriteTitle() {
-    if (!timetable.some(item => check(item, new Date()))) {
+    if (!timetable.some(item => checkDate(item, new Date()))) {
         document.querySelector(".title").innerHTML = "<p>" + "Активных докладов нет" + "</p>";
     }
     else {
