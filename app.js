@@ -9859,7 +9859,7 @@ var timetable = [{
     "date": "03.04.2017",
     "begin": "16:01:00",
     "end": "16:10:00",
-    "author": "Anna Knyazkova",
+    "author": "123",
     "title": "check"
 }, {
     "date": "04.04.2017",
