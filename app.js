@@ -9908,15 +9908,20 @@ var checkDate = function checkDate(item, date) {
 };
 
 var rewriteTitle = function rewriteTitle() {
-    timetable.forEach(function (item) {
-        if (checkDate(item, new Date())) {
-            if (document.querySelector(".title").innerHTML != "<p>" + item.title + "</p>") {
-                (0, _jquery2.default)(".btn-like").removeAttr("disabled");
-                (0, _jquery2.default)(".btn-dislike").removeAttr("disabled");
-                document.querySelector(".title").innerHTML = "<p>" + item.title + "</p>";
+    if (!timetable.some(item => check(item, new Date()))) {
+        document.querySelector(".title").innerHTML = "<p>" + "Активных докладов нет" + "</p>";
+    }
+    else {
+        timetable.forEach(function (item) {
+            if (checkDate(item, new Date())) {
+                if (document.querySelector(".title").innerHTML != "<p>" + item.title + "</p>") {
+                    (0, _jquery2.default)(".btn-like").removeAttr("disabled");
+                    (0, _jquery2.default)(".btn-dislike").removeAttr("disabled");
+                    document.querySelector(".title").innerHTML = "<p>" + item.title + "</p>";
+                }
             }
-        }
-    });
+        });
+    }
 };
 
 (0, _jquery2.default)(function () {
