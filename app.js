@@ -9899,9 +9899,17 @@ var timetable = [{
     "title": "Happy with GraphQL"
 }];
 
+var checkDate = function checkDate(item, date) {
+    var time = date.toLocaleTimeString();
+    if (time.length < 8) {
+        time = "0" + time;
+    }
+    return (item.begin <= time && item.end >= time && item.date == date.toLocaleDateString());
+};
+
 var rewriteTitle = function rewriteTitle() {
     timetable.forEach(function (item) {
-        if (item.date == new Date().toLocaleDateString() && item.begin <= new Date().toLocaleTimeString() && item.end >= new Date().toLocaleTimeString()) {
+        if (checkDate(item, new Date())) {
             if (document.querySelector(".title").innerHTML != "<p>" + item.title + "</p>") {
                 (0, _jquery2.default)(".btn-like").removeAttr("disabled");
                 (0, _jquery2.default)(".btn-dislike").removeAttr("disabled");
