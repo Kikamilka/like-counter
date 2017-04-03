@@ -9856,12 +9856,6 @@ var timetable = [{
     "author": "Anna Knyazkova",
     "title": "Professional burnout: How to prevent it?"
 }, {
-    "date": "03.04.2017",
-    "begin": "16:01:00",
-    "end": "16:10:00",
-    "author": "123",
-    "title": "check"
-}, {
     "date": "04.04.2017",
     "begin": "09:30:00",
     "end": "11:00:00",
