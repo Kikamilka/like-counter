@@ -9923,7 +9923,7 @@ var rewriteTitle = function rewriteTitle() {
     (0, _jquery2.default)(".btn-like").click(function () {
         this.disabled = true;
         (0, _jquery2.default)(".btn-dislike").removeAttr("disabled");
-        console.log("click like");
+        console.log("click like", new Date().toLocaleDateString(), new Date().toLocaleTimeString());
         var randomValue = generateId(15);
         db.ref("/like-app/it-week/" + randomValue).set({
             "id": id,
@@ -9935,7 +9935,7 @@ var rewriteTitle = function rewriteTitle() {
     (0, _jquery2.default)(".btn-dislike").click(function () {
         this.disabled = true;
         (0, _jquery2.default)(".btn-like").removeAttr("disabled");
-        console.log("click dislike");
+        console.log("click dislike", new Date().toLocaleDateString(), new Date().toLocaleTimeString());
         var randomValue = generateId(15);
         db.ref("/like-app/it-week/" + randomValue).set({
             "id": id,
