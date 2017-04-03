@@ -100,9 +100,13 @@ var countVoiceFromDB = function (snapshot, report) {
     var dislike = 0;
     var voices_id_type = [];
     snapshot.forEach(function (childSnapshot) {
+        var timeFromBD = new Date(childSnapshot.val().cur_time).toLocaleTimeString();
+        if (timeFromBD.length < 8) {
+            timeFromBD = "0" + timeFromBD;
+        }
         if ((new Date(childSnapshot.val().cur_time).toLocaleDateString() == report.date)
-            && (new Date(childSnapshot.val().cur_time).toLocaleTimeString() >= report.begin)
-            && (new Date(childSnapshot.val().cur_time).toLocaleTimeString() <= report.end)) {
+            && (timeFromBD >= report.begin)
+            && (timeFromBD <= report.end)) {
             if (!in_array(childSnapshot.val().id, voices_id_type)) {
                 if (childSnapshot.val().type == "like") {
                     like++;
