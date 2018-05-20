@@ -1,5 +1,5 @@
 body {
-    background: url(/images/bgr_green_lite.jpg) no-repeat center center fixed;
+    background: url(../../images/presswall_itnight.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -32,7 +32,7 @@ body {
 
 @media screen and (min-width: 511px) and (max-width: 1039px) and (max-height: 680px) {
     body {
-        background-image: url(/images/IT-Week_bgr_1039x680.png);
+        background-image: url(../../images/presswall_itnight.jpg);
     }
 
     .logo-it-week {

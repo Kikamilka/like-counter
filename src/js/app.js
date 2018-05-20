@@ -88,18 +88,31 @@ var timetable = [
     },
 ];
 
+var checkDate = function checkDate(item, date) {
+    var time = date.toLocaleTimeString();
+    if (time.length < 8) {
+        time = "0" + time;
+    }
+    return (item.begin <= time && item.end >= time && item.date == date.toLocaleDateString());
+};
+
 var rewriteTitle = function () {
-    timetable.forEach(function (item) {
-        if (item.date == new Date().toLocaleDateString()
-            && item.begin <= new Date().toLocaleTimeString()
-            && item.end >= new Date().toLocaleTimeString()) {
-            if (document.querySelector(".title").innerHTML != "<p>" + item.title + "</p>") {
-                $(".btn-like").removeAttr("disabled");
-                $(".btn-dislike").removeAttr("disabled");
-                document.querySelector(".title").innerHTML = "<p>" + item.title + "</p>";
+    if (!timetable.some(item => checkDate(item, new Date()))) {
+        document.querySelector(".title").innerHTML = "<p>" + "Активных докладов нет" + "</p>";
+    }
+    else {
+        timetable.forEach(function (item) {
+            if (item.date == new Date().toLocaleDateString()
+                && item.begin <= new Date().toLocaleTimeString()
+                && item.end >= new Date().toLocaleTimeString()) {
+                if (document.querySelector(".title").innerHTML != "<p>" + item.title + "</p>") {
+                    $(".btn-like").removeAttr("disabled");
+                    $(".btn-dislike").removeAttr("disabled");
+                    document.querySelector(".title").innerHTML = "<p>" + item.title + "</p>";
+                }
             }
-        }
-    })
+        })
+    }
 };
 
 $(function () {
