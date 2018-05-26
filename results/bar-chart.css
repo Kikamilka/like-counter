@@ -1,5 +1,7 @@
 body {
-    background-image: url(../images/presswall_preview.png);
+    background-image: url(../images/presswall_it18.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 div {
     background-color: aliceblue;
