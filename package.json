@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clean": "rm -rf build && mkdir build",
     "copy": "cp -r images/ build && cp -r src/css/ build && cp src/index.html build",
-    "bundle": "browserify src/js/app.js -t [ babelify --presets [ es2015 ] ] | uglifyjs -cm > build/app.js",
+    "bundle": "browserify src/js/app.js -t [ babelify --npm run test [ es2015 ] ] | uglifyjs -cm > build/app.js",
     "watch": "watchify src/js/app.js -o build/app.js -d -v -p [ browserify-livereload --host 127.0.0.1 --port 1340 ] -t [ babelify --presets [ es2015 ] ]",
     "static": "static build",
     "build": "npm run clean && npm run bundle && npm run copy",
@@ -16,20 +16,20 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "angular-chart.js": "^1.0.3",
-    "bootstrap": "3.3.7",
-    "firebase": "^3.6.1",
-    "jquery": "2.1.1",
-    "lodash": "3.6.0",
-    "chart.js": "^2.4.0"
+    "angular-chart.js": "1.1.1",
+    "bootstrap": "^4.1.1",
+    "chart.js": "2.7.2",
+    "firebase": "5.0.4",
+    "jquery": "^3.3.1",
+    "lodash": "4.17.10"
   },
   "devDependencies": {
     "babel-preset-es2015": "^6.16.0",
     "babelify": "^7.3.0",
     "browserify": "^13.1.0",
     "browserify-livereload": "^1.0.8",
-    "node-static": "^0.7.9",
-    "npm-run-all": "^3.1.0",
+    "node-static": "^0.7.10",
+    "npm-run-all": "^4.1.3",
     "uglify-js": "^2.7.3",
     "watchify": "^3.7.0"
   }

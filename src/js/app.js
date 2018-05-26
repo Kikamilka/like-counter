@@ -24,40 +24,22 @@ const db = firebase.database();
 
 var timetable = [
     {
-        "begin": "20:00:00",
-        "end": "20:39:59",
-        "author": "Алексей Зиновьев",
-        "title": "Джунгли Hadoop: мир диких алгоритмов и ядовитых JVM"
+        "begin": "19:40:00",
+        "end": "20:45:00",
+        "author": "Андрей Кузнецов",
+        "title": "Big Data. Cloudera Zoo"
     },
     {
-        "begin": "20:40:00",
-        "end": "20:59:59",
-        "author": "Арина Николаева",
-        "title": "Mind mapping. Use your head to grow a tree!"
+        "begin": "20:50:00",
+        "end": "22:09:59",
+        "author": "Игорь Кузьминых",
+        "title": "Drill project. Expand your App"
     },
     {
-        "begin": "21:00:00",
-        "end": "21:39:59",
-        "author": "Яна Клочкова, Владимир Селянкин, Игорь Кузьминых",
-        "title": "Мы из Agile"
-    },
-    {
-        "begin": "22:00:00",
-        "end": "22:39:59",
-        "author": "Игорь Борисевич, Юрий Кочубеев",
-        "title": "Support from Cradle to Grave"
-    },
-    {
-        "begin": "22:40:00",
-        "end": "22:59:59",
-        "author": "Екатерина Никольская",
-        "title": "Self-presentation: tips & tricks"
-    },
-    {
-        "begin": "23:00:00",
-        "end": "23:59:59",
-        "author": "Александр Шушунов",
-        "title": "Bullshit Bingo"
+        "begin": "22:20:00",
+        "end": "23:30:00",
+        "author": "Евгений Кожевников",
+        "title": "Serverless Big Data или слон с крыльями"
     }
 ];
 
@@ -87,7 +69,7 @@ $(function () {
         $(".btn-dislike").removeAttr("disabled");
         console.log("click like");
         var randomValue = generateId(15);
-        db.ref("/like-app/info/" + randomValue).set({
+        db.ref("/like-app/it_night/" + randomValue).set({
             "id": id,
             "type": "like",
             "cur_time": firebase.database.ServerValue.TIMESTAMP
@@ -99,7 +81,7 @@ $(function () {
         $(".btn-like").removeAttr("disabled");
         console.log("click dislike");
         var randomValue = generateId(15);
-        db.ref("/like-app/info/" + randomValue).set({
+        db.ref("/like-app/it_night/" + randomValue).set({
             "id": id,
             "type": "dislike",
             "cur_time": firebase.database.ServerValue.TIMESTAMP
