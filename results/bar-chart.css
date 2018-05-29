@@ -1,3 +1,10 @@
+body, html {
+    height: 98vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
 body {
     background-image: url(../images/presswall_it18.jpg);
     background-repeat: no-repeat;
@@ -11,5 +18,8 @@ div {
     border-radius: 10px;
 }
 .chart {
+    width: 88% !important;
+    height: auto !important;
     padding: 10px;
+    overflow: hidden;
 }

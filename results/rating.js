@@ -94,6 +94,7 @@ var countVoiceFromDB = function (snapshot, report) {
 };
 
 myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseArray) {
+    var stepSizeValue = 2;
     $scope.series = ['like', 'dislike'];
     const ref = firebase.database().ref("/like-app/it_night/");
     var syncObject = $firebaseObject(ref);
@@ -106,6 +107,9 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
             var __ret = countVoiceFromDB(snapshot, report);
             firstArray.push(__ret.like);
             secondArray.push(__ret.dislike);
+            if (firstArray.length > 36 || secondArray.length > 36) {
+                stepSizeValue = 4;
+            }
             $scope.labels.push(report.title);
             $scope.data = [
                 firstArray,
@@ -117,7 +121,7 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
 
     $scope.options = {
         legend: {
-            display: true,
+            display: false,
             type: "category",
             position: 'bottom',
             labels: {
@@ -131,9 +135,10 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
             xAxes: [
                 {
                     ticks: {
+                        beginAtZero: true,
                         fontSize: 24,
                         fontColor: "black",
-                        stepSize: 1
+                        stepSize: stepSizeValue
                     },
                     gridLines: {
                         zeroLineColor: "black",
@@ -146,11 +151,10 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
                     ticks: {
                         // наименования докладов
                         fontColor: "black",
-                        fontSize: 24,
-                        stepSize: 1
+                        fontSize: 24
                     },
                     gridLines: {
-                        lineWidth: 5,
+                        lineWidth: 4,
                         offsetGridLines: true
                     }
                 }
