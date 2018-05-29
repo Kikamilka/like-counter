@@ -1,24 +1,25 @@
+body, html {
+    height: 98vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
 body {
-    background-image: url(../images/bgr_green.jpg);
-    /*background: rgba(141,234,53,0.87);*/
+    background-image: url(../images/presswall_it18.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
-.logo-it-week {
-    position: absolute;
-    opacity: 0.6;
-    border-radius: 120px;
-    left: 85%;
-    width: 14%;
-}
-.results {
+div {
     background-color: aliceblue;
-    opacity: 0.85;
+    opacity: 0.9;
     position: relative;
     margin: 10px;
     border-radius: 10px;
 }
 .chart {
-    width: 100%;
-    opacity: 1 !important;
-    height: auto;
+    width: 88% !important;
+    height: auto !important;
     padding: 10px;
+    overflow: hidden;
 }

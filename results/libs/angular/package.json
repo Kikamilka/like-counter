@@ -1,50 +1,27 @@
 {
-  "_args": [
-    [
-      {
-        "raw": "angular@1.x",
-        "scope": null,
-        "escapedName": "angular",
-        "name": "angular",
-        "rawSpec": "1.x",
-        "spec": ">=1.0.0 <2.0.0",
-        "type": "range"
-      },
-      "C:\\Users\\Kamila_Zaeva\\WebstormProjects\\like-counter\\node_modules\\angular-chart.js"
-    ]
-  ],
-  "_from": "angular@>=1.0.0 <2.0.0",
-  "_id": "angular@1.5.8",
-  "_inCache": true,
+  "_from": "angular@1.x",
+  "_id": "angular@1.7.0",
+  "_inBundle": false,
+  "_integrity": "sha512-3LboCLjrOuC7dWh953O0+dI3dJ7PexYRSCIrfqoN5qoHyja/wak3eWoxPKb2Sl2qwiPbrUV5KJXwgpUQ48McBQ==",
   "_location": "/angular",
-  "_nodeVersion": "4.4.7",
-  "_npmOperationalInternal": {
-    "host": "packages-16-east.internal.npmjs.com",
-    "tmp": "tmp/angular-1.5.8.tgz_1469201394611_0.9924397475551814"
-  },
-  "_npmUser": {
-    "name": "angularcore",
-    "email": "angular-core+npm@google.com"
-  },
-  "_npmVersion": "2.15.8",
   "_phantomChildren": {},
   "_requested": {
+    "type": "range",
+    "registry": true,
     "raw": "angular@1.x",
-    "scope": null,
-    "escapedName": "angular",
     "name": "angular",
+    "escapedName": "angular",
     "rawSpec": "1.x",
-    "spec": ">=1.0.0 <2.0.0",
-    "type": "range"
+    "saveSpec": null,
+    "fetchSpec": "1.x"
   },
   "_requiredBy": [
     "/angular-chart.js"
   ],
-  "_resolved": "https://registry.npmjs.org/angular/-/angular-1.5.8.tgz",
-  "_shasum": "925a5392b8c212d09572dc446db7e01264e094cb",
-  "_shrinkwrap": null,
+  "_resolved": "https://registry.npmjs.org/angular/-/angular-1.7.0.tgz",
+  "_shasum": "e45d679fc8d81040a4894c7ccc16a4e1ad0a9ca6",
   "_spec": "angular@1.x",
-  "_where": "C:\\Users\\Kamila_Zaeva\\WebstormProjects\\like-counter\\node_modules\\angular-chart.js",
+  "_where": "C:\\Projects\\like-counter\\node_modules\\angular-chart.js",
   "author": {
     "name": "Angular Core Team",
     "email": "angular-core+npm@google.com"
@@ -52,15 +29,9 @@
   "bugs": {
     "url": "https://github.com/angular/angular.js/issues"
   },
-  "dependencies": {},
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "HTML enhanced for web apps",
-  "devDependencies": {},
-  "directories": {},
-  "dist": {
-    "shasum": "925a5392b8c212d09572dc446db7e01264e094cb",
-    "tarball": "https://registry.npmjs.org/angular/-/angular-1.5.8.tgz"
-  },
-  "gitHead": "7e0e546eb6caedbb298c91a9f6bf7de7eeaa4ad2",
   "homepage": "http://angularjs.org",
   "keywords": [
     "angular",
@@ -70,19 +41,7 @@
   ],
   "license": "MIT",
   "main": "index.js",
-  "maintainers": [
-    {
-      "name": "angularcore",
-      "email": "angular-core+npm@google.com"
-    },
-    {
-      "name": "petebd",
-      "email": "pete@bacondarwin.com"
-    }
-  ],
   "name": "angular",
-  "optionalDependencies": {},
-  "readme": "ERROR: No README data found!",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/angular/angular.js.git"
@@ -90,5 +49,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.5.8"
+  "version": "1.7.0"
 }

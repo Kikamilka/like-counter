@@ -1,69 +1,23 @@
 var timetable = [
     {
-        "date": "03.04.2017",
-        "begin": "09:30:00",
-        "end": "11:00:00",
-        "author": "Arina Nikolaeva",
-        "title": "EPAM Training – Why we do eLearning"
+        "begin": "19:40:00",
+        "end": "20:45:00",
+        "author": "Андрей Кузнецов",
+        "title": "Big Data. Cloudera Zoo"
     },
     {
-        "date": "03.04.2017",
-        "begin": "17:30:00",
-        "end": "19:00:00",
-        "author": "Anna Knyazkova",
-        "title": "Professional burnout: How to prevent it?"
+        "begin": "20:50:00",
+        "end": "22:09:59",
+        "author": "Игорь Кузьминых",
+        "title": "Drill project. Expand your App"
     },
     {
-        "date": "04.04.2017",
-        "begin": "09:30:00",
-        "end": "11:00:00",
-        "author": "Aleksei Prokofev",
-        "title": "Java logging is a tricky business"
-    },
-    {
-        "date": "04.04.2017",
-        "begin": "17:30:00",
-        "end": "19:00:00",
-        "author": "Ekaterina Nikolskaya",
-        "title": "How did they pass an assessment session?"
-    },
-    {
-        "date": "05.04.2017",
-        "begin": "09:30:00",
-        "end": "11:00:00",
-        "author": "Igor Kuzminykh",
-        "title": "JRebel: Make delivery faster"
-    },
-    {
-        "date": "06.04.2017",
-        "begin": "09:30:00",
-        "end": "11:00:00",
-        "author": "Sergey Larin",
-        "title": "Java&C++. How to make friends?"
-    },
-    {
-        "date": "06.04.2017",
-        "begin": "17:30:00",
-        "end": "19:00:00",
-        "author": "Arina Nikolaeva",
-        "title": "Mind mapping. Use your head to grow a tree!"
-    },
-    {
-        "date": "07.04.2017",
-        "begin": "09:30:00",
-        "end": "11:00:00",
-        "author": "Denis Sokolov and Margarita Vermenik",
-        "title": "Morning coffee with director"
-    },
-    {
-        "date": "07.04.2017",
-        "begin": "17:30:00",
-        "end": "19:00:00",
-        "author": "Dmitrii Golikov",
-        "title": "Happy with GraphQL"
-    },
+        "begin": "22:20:00",
+        "end": "23:30:00",
+        "author": "Евгений Кожевников",
+        "title": "Serverless Big Data или слон с крыльями"
+    }
 ];
-
 var config = {
     apiKey: "AIzaSyAxq2kfdo0cNRLZcYaRp4ZJMx_s9hXE3YE",
     authDomain: "likecounter-b8d5a.firebaseapp.com",
@@ -100,13 +54,8 @@ var countVoiceFromDB = function (snapshot, report) {
     var dislike = 0;
     var voices_id_type = [];
     snapshot.forEach(function (childSnapshot) {
-        var timeFromBD = new Date(childSnapshot.val().cur_time).toLocaleTimeString();
-        if (timeFromBD.length < 8) {
-            timeFromBD = "0" + timeFromBD;
-        }
-        if ((new Date(childSnapshot.val().cur_time).toLocaleDateString() == report.date)
-            && (timeFromBD >= report.begin)
-            && (timeFromBD <= report.end)) {
+        if ((new Date(childSnapshot.val().cur_time).toLocaleTimeString() >= report.begin)
+            && (new Date(childSnapshot.val().cur_time).toLocaleTimeString() <= report.end)) {
             if (!in_array(childSnapshot.val().id, voices_id_type)) {
                 if (childSnapshot.val().type == "like") {
                     like++;
@@ -145,8 +94,9 @@ var countVoiceFromDB = function (snapshot, report) {
 };
 
 myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseArray) {
+    var stepSizeValue = 2;
     $scope.series = ['like', 'dislike'];
-    const ref = firebase.database().ref("/like-app/it-week/");
+    const ref = firebase.database().ref("/like-app/it_night/");
     var syncObject = $firebaseObject(ref);
     ref.on('value', function (snapshot) {
         var firstArray = [];
@@ -157,6 +107,9 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
             var __ret = countVoiceFromDB(snapshot, report);
             firstArray.push(__ret.like);
             secondArray.push(__ret.dislike);
+            if (firstArray.length > 36 || secondArray.length > 36) {
+                stepSizeValue = 4;
+            }
             $scope.labels.push(report.title);
             $scope.data = [
                 firstArray,
@@ -185,7 +138,7 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
                         beginAtZero: true,
                         fontSize: 24,
                         fontColor: "black",
-                        stepSize: 2
+                        stepSize: stepSizeValue
                     },
                     gridLines: {
                         zeroLineColor: "black",
@@ -198,10 +151,10 @@ myAppModule.controller("BarCtrl", function ($scope, $firebaseObject, $firebaseAr
                     ticks: {
                         // наименования докладов
                         fontColor: "black",
-                        fontSize: 20
+                        fontSize: 24
                     },
                     gridLines: {
-                        lineWidth: 5,
+                        lineWidth: 4,
                         offsetGridLines: true
                     }
                 }

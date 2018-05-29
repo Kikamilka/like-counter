@@ -1,94 +1,95 @@
-body {
-    background: url(../images/bgr_green_lite.jpg) no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
+body, html {
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.bg {
+    /* The image used */
+    background-image: url("../../images/bgr_18.jpg");
+
+    /* Full height */
+    height: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 
-.logo-it-week {
+.logo-itnight {
     position: absolute;
     opacity: 0.8;
-    border-radius: 10px;
-    width: 10%;
+    height: 30%;
     bottom: 5%;
-    right: 5%;
+    right: 2%;
 }
 
 @media screen and (max-width: 510px) and (max-height: 1039px) {
-    .logo-it-week {
+    .logo-itnight {
         position: absolute;
         opacity: 0.8;
-        border-radius: 10px;
-        left: 25%;
+        left: 15%;
         bottom: 5%;
-        width: 50%;
-    }
-
-    div.title p {
-        color: dimgray;
+        width: 70%;
+        height: auto;
     }
 }
 
 @media screen and (min-width: 511px) and (max-width: 1039px) and (max-height: 680px) {
-    body {
-        background-image: url(../images/IT-Week_bgr_1039x680.png);
-    }
-
-    .logo-it-week {
+    .logo-itnight {
         position: absolute;
-        opacity: 0.0;
-        border-radius: 10px;
-        left: 25%;
-        bottom: 5%;
-        width: 50%;
-    }
-
-    div.title p {
-        color: dimgray;
+        opacity: 0.8;
+        bottom: 4%;
+        width: 35%;
+        height: auto;
     }
 }
 
+
+.bottom-title {
+    background-image: url("../../images/presswall_it18_title.jpg");
+    /* Full height */
+    width: 100%;
+
+    /* Center and scale the image nicely */
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .btn-like, .btn-dislike {
     margin-bottom: 10px;
     margin-top: 10px;
     font-size: 30px;
     line-height: 3.0;
 }
-
-button.disabled, button[disabled] {
+button.disabled,button[disabled] {
     background-color: aliceblue !important;
     opacity: 0.7 !important;
     color: darkgrey !important;
     border: darkgrey 2px solid !important;
 }
-
 button[disabled] span.glyphicon-thumbs-up {
     font-size: 50px !important;
     top: 10px !important;
 }
-
 button[disabled] span.glyphicon-thumbs-down {
     font-size: 50px !important;
     top: 18px !important;
 }
-
 .glyphicon {
     margin-left: 20px !important;
 }
-
 .glyphicon-thumbs-up {
     top: 3px;
 }
-
 .glyphicon-thumbs-down {
     top: 9px;
 }
-
 div.title p {
-    color: dimgray;
+    color: azure;
     font-size: 5vw;
     font-weight: bold;
     text-align: center;
-    margin: 10px;
 }
