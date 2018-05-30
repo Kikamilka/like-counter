@@ -8,6 +8,7 @@ body, html {
 .bg {
     /* The image used */
     background-image: url("../images/bgr_18.jpg");
+    background-color: #0c264b;
 
     /* Full height */
     height: 100%;
@@ -30,9 +31,9 @@ body, html {
     .logo-itnight {
         position: absolute;
         opacity: 0.8;
-        left: 15%;
+        left: 30%;
         bottom: 5%;
-        width: 70%;
+        width: 40%;
         height: auto;
     }
 }
@@ -44,6 +45,12 @@ body, html {
         bottom: 4%;
         width: 35%;
         height: auto;
+    }
+}
+
+@media handheld and (orientation: landscape) {
+    .logo-itnight {
+        display: none;
     }
 }
 
