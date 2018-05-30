@@ -102,8 +102,9 @@ button[disabled] span.glyphicon-thumbs-down {
 }
 
 div.title p {
+    font-size: 1.5em;
     color: azure;
-    font-size: 5vw;
     font-weight: bold;
     text-align: center;
+    user-select: none;
 }
