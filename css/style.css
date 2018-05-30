@@ -54,17 +54,6 @@ body, html {
     }
 }
 
-.bottom-title {
-    background-image: url("../../images/presswall_it18_title.jpg");
-    /* Full height */
-    width: 100%;
-
-    /* Center and scale the image nicely */
-    background-position: bottom;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .btn-like, .btn-dislike {
     margin-bottom: 10px;
     margin-top: 10px;
