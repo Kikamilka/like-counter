@@ -22,7 +22,7 @@ body, html {
 .logo-itnight {
     position: absolute;
     opacity: 0.8;
-    height: 30%;
+    height: 20%;
     bottom: 5%;
     right: 2%;
 }
@@ -31,9 +31,9 @@ body, html {
     .logo-itnight {
         position: absolute;
         opacity: 0.8;
-        left: 30%;
+        left: 35%;
         bottom: 5%;
-        width: 40%;
+        width: 30%;
         height: auto;
     }
 }
@@ -43,17 +43,16 @@ body, html {
         position: absolute;
         opacity: 0.8;
         bottom: 4%;
-        width: 35%;
+        width: 30%;
         height: auto;
     }
 }
 
-@media handheld and (orientation: landscape) {
+@media only screen and (min-device-width: 480px) and (max-device-width: 640px) and (orientation: landscape) {
     .logo-itnight {
         display: none;
     }
 }
-
 
 .bottom-title {
     background-image: url("../../images/presswall_it18_title.jpg");
@@ -65,35 +64,43 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .btn-like, .btn-dislike {
     margin-bottom: 10px;
     margin-top: 10px;
     font-size: 30px;
     line-height: 3.0;
 }
-button.disabled,button[disabled] {
+
+button.disabled, button[disabled] {
     background-color: aliceblue !important;
     opacity: 0.7 !important;
     color: darkgrey !important;
     border: darkgrey 2px solid !important;
 }
+
 button[disabled] span.glyphicon-thumbs-up {
     font-size: 50px !important;
     top: 10px !important;
 }
+
 button[disabled] span.glyphicon-thumbs-down {
     font-size: 50px !important;
     top: 18px !important;
 }
+
 .glyphicon {
     margin-left: 20px !important;
 }
+
 .glyphicon-thumbs-up {
     top: 3px;
 }
+
 .glyphicon-thumbs-down {
     top: 9px;
 }
+
 div.title p {
     color: azure;
     font-size: 5vw;
